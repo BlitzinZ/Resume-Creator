@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Resume</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    /* Layout */
+    .container {
+      display: flex;
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .form-section, .preview-section {
+      flex: 1;
+    }
+    .preview-box {
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      padding: 1rem;
+      background: #fff;
+      min-height: 400px;
+      overflow-y: auto;
+    }
+    select, input, textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.6rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background: #4338ca;
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="{{ url_for('home') }}" class="nav-logo">ResumeBuilder</a>
+        </div>
+        <div class="nav-right">
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('form') }}">Create Resume</a>
+                <a href="{{ url_for('saved_resumes') }}">Saved Resumes</a>
+                <a href="{{ url_for('logout') }}" class="btn-logout">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}" class="btn-primary">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+  <div class="container">
+    <!-- FORM SECTION -->
+    <div class="form-section">
+      <h2>Create Your Resume</h2>
+      <form id="resumeForm" method="POST" action="{{ url_for('generate_pdf') }}">
+        <label>Full Name</label>
+        <input type="text" name="name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Phone</label>
+        <input type="text" name="phone">
+
+        <label>Education</label>
+        <textarea name="education" rows="3"></textarea>
+
+        <label>Skills</label>
+        <textarea name="skills" rows="2"></textarea>
+
+        <label>Experience</label>
+        <textarea name="experiences" rows="4" placeholder="List experiences, one per line"></textarea>
+
+        <label>Choose Template</label>
+        <select name="template" id="templateSelect">
+          <option value="template1.html">Template 1</option>
+          <option value="template2.html">Template 2</option>
+          <option value="template3.html">Template 3</option>
+        </select>
+
+        <button type="submit">Download PDF</button>
+      </form>
+    </div>
+
+    <!-- PREVIEW SECTION -->
+    <div class="preview-section">
+      <h2>Live Preview</h2>
+      <div class="preview-box" id="resumePreview">
+        <p>Fill in the form to see your resume preview here.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Update preview when form changes
+    function updatePreview() {
+      $.ajax({
+        url: "/preview",
+        method: "POST",
+        data: $("#resumeForm").serialize(),
+        success: function(data) {
+          $("#resumePreview").html(data);
+        }
+      });
+    }
+
+    // Trigger preview update on input change
+    $(document).ready(function() {
+      $("#resumeForm input, #resumeForm textarea, #resumeForm select").on("input change", updatePreview);
+    });
+  </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Saved Resumes</h2>
+
+<div class="saved-resumes-container">
+    {% if files %}
+        <ul class="resume-list">
+        {% for file in files %}
+            <li class="resume-item">
+                <span>{{ file }}</span>
+                <a href="{{ url_for('download', filename=file) }}" class="btn-download">Download</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No saved resumes yet. <a href="{{ url_for('form') }}">Create one now</a>.</p>
+    {% endif %}
+</div>
+{% endblock %}
+

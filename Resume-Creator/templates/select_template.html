@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Select Your Resume Template</h2>
+
+<form method="POST" id="template-form">
+    <div class="template-container">
+        <label class="template-card">
+            <input type="radio" name="template" value="template1" checked onclick="switchTemplate('template1')">
+            <div class="template-preview" id="template1-preview">
+                <h4>Template 1</h4>
+                <div class="template-box template1">Your Name<br>Skills<br>Experience...</div>
+            </div>
+        </label>
+
+        <label class="template-card">
+            <input type="radio" name="template" value="template2" onclick="switchTemplate('template2')">
+            <div class="template-preview" id="template2-preview">
+                <h4>Template 2</h4>
+                <div class="template-box template2">Your Name<br>Skills<br>Experience...</div>
+            </div>
+        </label>
+
+        <label class="template-card">
+            <input type="radio" name="template" value="template3" onclick="switchTemplate('template3')">
+            <div class="template-preview" id="template3-preview">
+                <h4>Template 3</h4>
+                <div class="template-box template3">Your Name<br>Skills<br>Experience...</div>
+            </div>
+        </label>
+    </div>
+    <button type="submit">Select Template</button>
+</form>
+
+<script>
+// Dynamically switch live preview template
+function switchTemplate(template) {
+    // Update hidden input for form page
+    document.getElementById("selected-template").value = template;
+
+    // If live preview exists on form page, update its class
+    const previewPanel = document.getElementById("preview");
+    if(previewPanel){
+        previewPanel.className = ""; // reset
+        previewPanel.classList.add("preview-panel", `preview-${template}`);
+    }
+}
+</script>
+{% endblock %}
+
+

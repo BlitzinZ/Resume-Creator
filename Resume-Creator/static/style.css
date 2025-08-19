@@ -1,0 +1,365 @@
+/* General Body & Container */
+body { 
+    font-family: Arial, sans-serif; 
+    margin: 0; 
+    background-color: #f5f6fa; 
+    color: #2c3e50;
+}
+.container { 
+    max-width: 1200px; 
+    margin: auto; 
+    padding: 20px; 
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3498db;
+    padding: 10px 20px;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 0 0 8px 8px;
+}
+.nav-left .nav-logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+.nav-right a {
+    margin-left: 15px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.nav-right a:hover { color: #dfe6e9; }
+.btn-logout {
+    background-color: #e74c3c;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: #fff;
+}
+.btn-logout:hover { background-color: #c0392b; }
+.btn-primary {
+    background-color: #2ecc71;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+.btn-primary:hover { background-color: #27ae60; }
+
+/* Auth Pages (Login/Register) */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.auth-card {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    width: 350px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+.auth-card:hover { transform: translateY(-5px); }
+.auth-card h2 {
+    margin-bottom: 25px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+.input-group input {
+    width: 100%;
+    padding: 12px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: none;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+.input-group label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 14px;
+    pointer-events: none;
+    transition: 0.3s;
+    background: #fff;
+    padding: 0 4px;
+}
+.input-group input:focus {
+    border-color: #3498db;
+}
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -8px;
+    left: 10px;
+    font-size: 12px;
+    color: #3498db;
+}
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+.btn-primary:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+.auth-footer {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
+.auth-footer a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+}
+.auth-footer a:hover { text-decoration: underline; }
+
+/* Form + Live Preview */
+.form-preview-container {
+    display:flex;
+    gap:20px;
+}
+.form-panel, .preview-panel {
+    flex:1;
+    padding:20px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    background:#f9f9f9;
+}
+input, textarea, button { margin-bottom:10px; width:100%; padding:5px; }
+button { width:auto; margin-top:5px; cursor:pointer; }
+.resume-header { text-align:center; margin-bottom:20px; }
+.resume-header img {
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:10px;
+}
+.resume-section {
+    border-left:4px solid #3498db;
+    padding:10px;
+    margin-bottom:15px;
+    background:#f2f2f2;
+    border-radius:4px;
+}
+.remove-exp { background:#e74c3c; color:white; border:none; padding:3px 6px; margin-top:3px; }
+
+/* Live Preview Templates */
+.preview-template1 { background-color: #ffffff; color: #2c3e50; }
+.preview-template2 { background-color: #fefbd8; color: #e67e22; }
+.preview-template3 { background-color: #f0f0f0; color: #9b59b6; }
+.preview-template1 .resume-section { border-left-color: #3498db; }
+.preview-template2 .resume-section { border-left-color: #e67e22; }
+.preview-template3 .resume-section { border-left-color: #9b59b6; }
+
+/* Template Selection Page */
+.template-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top:20px;
+}
+.template-card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    transition: transform 0.2s, border-color 0.2s;
+}
+.template-card:hover {
+    transform: scale(1.05);
+    border-color: #3498db;
+}
+.template-card input[type="radio"] { display: none; }
+.template-card input[type="radio"]:checked + .template-preview {
+    border: 3px solid #3498db;
+}
+.template-preview { text-align: center; }
+.template-box {
+    width: 150px;
+    height: 200px;
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 12px;
+    line-height: 1.2em;
+}
+.template1 { background-color:#ffffff; color:#2c3e50; }
+.template2 { background-color:#fefbd8; color:#e67e22; }
+.template3 { background-color:#f0f0f0; color:#9b59b6; }
+
+
+
+/* ---------------- Template 1: Modern clean (like first image) ---------------- */
+body.template1 {
+    background: #ffffff;
+}
+
+body.template1.resume-header {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, #1E88E5, #42A5F5);
+    color: white;
+    padding: 20px;
+}
+
+body.template1.resume-header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+body.template1.resume-header p {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+}
+
+body.template1.resume-section {
+    padding: 15px;
+    border-left: 5px solid #1E88E5;
+    margin: 10px 20px;
+}
+
+/* ---------------- Template 2: Corporate professional (like second image) ---------------- */
+body.template2 {
+    background: #f4f6f8;
+}
+
+body.template2.resume-header {
+    display: flex;
+    align-items: center;
+    background: #0D47A1;
+    color: white;
+    padding: 20px;
+}
+
+body.template2.resume-header img.resume-photo {
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+}
+
+body.template2.resume-header h1 {
+    margin-left: 20px;
+    font-size: 30px;
+}
+
+body.template2.resume-header p {
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+body.template2.resume-section {
+    background: #ffffff;
+    padding: 15px;
+    margin: 10px 20px;
+    border-radius: 5px;
+}
+
+body.template2.resume-section h2 {
+    background: #0D47A1;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* ---------------- Template 3: Elegant left sidebar ---------------- */
+body.template3 {
+    display: flex;
+    background: #fefefe;
+}
+
+body.template3.resume-header {
+    width: 25%;
+    background: #1B1F3B;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+body.template3.resume-header img.resume-photo {
+    margin: 10px auto;
+}
+
+body.template3.resume-header h1 {
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+body.template3.resume-header p {
+    font-size: 12px;
+}
+
+body.template3.resume-section {
+    width: 75%;
+    padding: 20px;
+    margin-left: 25%;
+}
+
+body.template3.resume-section h2 {
+    border-bottom: 2px solid #1B1F3B;
+    padding-bottom: 5px;
+}
+
+body.template3.experience-entry {
+    margin-bottom: 15px;
+}
+
+
+/* Saved Resumes Page */
+.saved-resumes-container { margin-top: 20px; }
+.resume-list { list-style: none; padding: 0; }
+.resume-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.resume-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.btn-download {
+    background-color: #3498db;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+.btn-download:hover { background-color: #2980b9; }
+
+
+
+

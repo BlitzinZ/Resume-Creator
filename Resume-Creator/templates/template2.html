@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ name }} - Resume</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", sans-serif;
+      margin: 40px;
+      color: #2c3e50;
+      background: #fff;
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 5px;
+      color: #34495e;
+    }
+    h2 {
+      font-size: 18px;
+      margin: 25px 0 10px;
+      border-bottom: 2px solid #34495e;
+      padding-bottom: 5px;
+    }
+    p {
+      margin: 5px 0;
+    }
+    ul {
+      margin: 5px 0;
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 4px;
+    }
+    .header {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .contact {
+      font-size: 14px;
+      color: #555;
+    }
+    .experience {
+      margin-bottom: 15px;
+    }
+    .experience h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #2c3e50;
+    }
+    .experience span {
+      font-size: 13px;
+      color: #7f8c8d;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>{{ name }}</h1>
+    <div class="contact">
+      <p>{{ email }} | {{ phone }}</p>
+    </div>
+  </div>
+
+  <h2>Education</h2>
+  <p>{{ education }}</p>
+
+  <h2>Skills</h2>
+  <ul>
+    {% for skill in skills.split(",") %}
+      <li>{{ skill.strip() }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Experience</h2>
+  {% for exp in experiences %}
+    <div class="experience">
+      <h3>{{ exp.position }} - {{ exp.employer }}</h3>
+      <span>{{ exp.dates }}</span>
+      <ul>
+        {% for line in exp.summary.split("\n") if line %}
+          <li>{{ line }}</li>
+        {% endfor %}
+      </ul>
+      <p><strong>Skills Learned:</strong> {{ exp.skills }}</p>
+    </div>
+  {% endfor %}
+</body>
+</html>
+
